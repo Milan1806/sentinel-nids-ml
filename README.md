@@ -53,14 +53,14 @@ Trained on the **NSL-KDD** dataset (25,000+ records). The model was optimized fo
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/sentinel-nids-ml.git
+git clone https://github.com/Milan1806/sentinel-nids-ml.git
 cd sentinel-nids-ml
 ```
 
 ### 2. Install Dependencies
 
 ```bash
-pip install -r requirements.txt
+pip install -r Requirement.txt
 ```
 
 ### 3. Initialize Model  
@@ -122,7 +122,7 @@ sentinel-nids-ml/
 │   ├── common/              # Shared preprocessing logic
 │   └── training/            # Model training pipeline
 ├── ui/                      # Streamlit Dashboard source code
-└── requirements.txt         # Project dependencies
+└── Requirement.txt         # Project dependencies
 ```
 
 ---

@@ -21,6 +21,17 @@ This project simulates a **Security Operations Center (SOC)** environment, featu
 - **Smart Correlation:** An inference engine correlating SYN error rates with service behavior to detect sophisticated DoS attacks.  
 
 ---
+## 🛡️ SOC Analyst Workflow
+
+1. Network traffic is analyzed in real time
+2. Risk score is generated per traffic window
+3. Alerts are classified:
+   - SAFE (<10%)
+   - WARNING (10–80%)
+   - CRITICAL (>80%)
+4. Analyst reviews protocol anomalies and SYN error rates
+5. Action is taken: monitor, block IP, or escalate
+
 
 ## 🏗️ System Architecture
 
@@ -32,6 +43,14 @@ graph LR
     D -->|Real-time Alerts| E[Streamlit Dashboard]
     D -->|Forensic Logs| F[History Database]
 ```
+## Model Comparison
+
+| Model | Accuracy | Strength |
+|------|---------|---------|
+| Logistic Regression | ~91% | Fast, interpretable |
+| Random Forest | ~99% | Robust, low false positives |
+
+Random Forest was selected for its balance between performance and explainability.
 
 ---
 
@@ -60,6 +79,10 @@ For production use, Sentinel-NIDS prioritizes:
 - Recall on high-impact attacks
 - False Positive Rate (FPR)
 - Model interpretability for analyst trust
+
+### Confusion Matrix
+
+To better evaluate real-world performance, a confusion matrix and per-class metrics are used instead of accuracy alone.
 
 
 ## 🚀 Quick Start
@@ -124,19 +147,29 @@ Perfect for testing edge cases and demonstrating interpretability.
 - **Architecture:** Modular Python packages (`src.common`, `src.training`)  
 
 ---
+## 🐳 Docker Support
+
+Run Sentinel-NIDS using Docker:
+
+docker build -t sentinel-nids .
+docker run -p 8501:8501 sentinel-nids
+
 
 ## 📂 Project Structure
 
 ```text
 sentinel-nids-ml/
-├── assets/                  # Images and Screenshots
+├── assets/                  # Images, screenshots, and diagrams
 ├── data/                    # Raw NSL-KDD datasets
 ├── models/                  # Serialized .pkl models & encoders
 ├── src/
-│   ├── common/              # Shared preprocessing logic
-│   └── training/            # Model training pipeline
-├── ui/                      # Streamlit Dashboard source code
-└── Requirement.txt         # Project dependencies
+│   ├── common/              # Shared preprocessing & feature logic
+│   ├── training/            # Model training pipeline
+│   └── evaluation/          # Model evaluation (confusion matrix, reports)
+├── ui/                      # Streamlit SOC-style dashboard
+├── Dockerfile               # (Optional) Containerized deployment
+├── README.md                # Project documentation
+└── Requirement.txt          # Project dependencies
 ```
 
 ---
@@ -157,6 +190,17 @@ While the model achieves **99.2% accuracy**, real-world deployment introduces ad
 - Enable Docker/Kubernetes production deployment  
 
 ---
+## 🎯 Interview Defense
+
+**Why Random Forest?**  
+Chosen for robustness, interpretability, and strong performance on tabular network data.
+
+**Does this work on encrypted traffic?**  
+Payload inspection is limited, but flow-based features remain effective.
+
+**Biggest production risk?**  
+False positives causing SOC alert fatigue.
+
 
 ## 👤 Author
 

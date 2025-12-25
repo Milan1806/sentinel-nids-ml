@@ -47,6 +47,20 @@ Trained on a **Global Consolidated Dataset** (Train + Test merged) to ensure the
 | **F1-Score** | 99.0% | High reliability in production |
 
 ---
+## ⚠️ Evaluation Caveats (Important)
+
+While Sentinel-NIDS achieves high accuracy on the NSL-KDD dataset, accuracy alone is not a reliable metric for real-world intrusion detection systems.
+
+Key considerations:
+- NSL-KDD is an older dataset and does not include modern cloud-native or ransomware attacks
+- Class imbalance can inflate accuracy metrics
+- False positives are more costly than false negatives in SOC environments due to alert fatigue
+
+For production use, Sentinel-NIDS prioritizes:
+- Recall on high-impact attacks
+- False Positive Rate (FPR)
+- Model interpretability for analyst trust
+
 
 ## 🚀 Quick Start
 
